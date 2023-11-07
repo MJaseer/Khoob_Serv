@@ -1,10 +1,8 @@
-// import redis from "redis";
-// const client = redis.createClient({url:process.env.REDIS_PORT});
+import redis from "redis";
+const client = redis.createClient();
 
-// client.on('connect', () => {
-//     console.log('Connected to Redis server');
-// });
+client.on('connect',()=>{
+    console.log('redis connected');
+})
 
-// client.on('error', (err) => {
-//     console.log('Redis error:', err);
-// });
+export default client

@@ -6,21 +6,23 @@ import cors from 'cors'
 
 import connectDataBase from "./config/database/mongo";
 import userRoute from "./router/user/user-router";
+import client from "./config/database/redis";
 
 const app = express()
 
 app.use(
     cors({
         credentials: true,
-        origin: ['http://localhost:4200']
+        origin: ['http://localhost:4200','*']
     })
 );
-    
+
+app.use(morgan("dev"))
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(morgan("dev"))
 
 connectDataBase()
+client.connect()
 
 app.use("/api", userRoute)
 
