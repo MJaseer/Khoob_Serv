@@ -5,13 +5,18 @@ import dotenv from "dotenv";
 import userSchema, { IUser } from "../../models/user";
 import { Finds } from "../../repositeries/common/find";
 import { create } from "../../repositeries/common/create";
+import { Validator } from "../../helpers/yupValidators";
 dotenv.config();
 
 export class User{
     
     private findService!:Finds
+    private validatorService!:Validator
 
-    constructor() { this.findService = new Finds()}
+    constructor() { 
+        this.findService = new Finds()
+        this.validatorService = new Validator()
+    }
 
     userRegister = async (req: Request, res: Response) => {
         try {
