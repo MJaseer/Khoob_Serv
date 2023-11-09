@@ -11,18 +11,20 @@ import { Wishlist } from "../../models/wishlist";
 import { Coupon } from "../../models/coupon";
 
 
+export class Creates{
 
-
-export const create = async <T>(item: string, value: (User | Address | Cart | Coupon | Review | Wallet | Product | Category | Order | Wishlist), itemSchema: Model<T & Document>) => {
-    try {
-        const data = new itemSchema(value)
-        if (!data) throw new Error('No data found');
-        const saveData = await data.save()
-        return saveData
-    } catch (error) {
-        console.log(error);
-        if (error instanceof Error) throw new Error(`Failed to create ${item}`, error);
-        else throw error;
+    create = async <T>(item: string, value: (User | Address | Cart | Coupon | Review | Wallet | Product | Category | Order | Wishlist), itemSchema: Model<T & Document>) => {
+        try {
+            const data = new itemSchema(value)
+            if (!data) throw new Error('No data found');
+            const saveData = await data.save()
+            return saveData
+        } catch (error) {
+            console.log(error);
+            if (error instanceof Error) throw new Error(`Failed to create ${item}`, error);
+            else throw error;
+        }
     }
+
 }
 

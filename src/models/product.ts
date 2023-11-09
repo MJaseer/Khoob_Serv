@@ -8,7 +8,7 @@ export interface Product {
     category: Types.ObjectId;
     quantity: number;
     image: string[],
-    reviews: Types.ObjectId,
+    reviews?: Types.ObjectId,
     createdAt?: Date
 }
 
@@ -58,7 +58,6 @@ const productSchema = new Schema<IProduct>({
     reviews: {
         type: Schema.Types.ObjectId,
         ref: 'Reviews',
-        required: true
     },
 }, {
     timestamps: true

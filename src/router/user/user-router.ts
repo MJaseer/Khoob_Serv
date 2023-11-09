@@ -1,8 +1,8 @@
 import { Router } from "express";
-import { User } from "../../controllers/user/user";
+import { UserClass } from "../../controllers/user/user";
 import { validation } from "../../middlewares/validation/yup";
 
-const user = new User();
+const user = new UserClass();
 
 const validator = new validation()
 
