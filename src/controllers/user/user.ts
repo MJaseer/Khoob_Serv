@@ -21,6 +21,8 @@ export class User{
     userRegister = async (req: Request, res: Response) => {
         try {
             const { firstName, phone, lastName, email, password }: IUser = req.body;
+            
+
             const existingUser = await this.findService.findOne('email', email, userSchema,'register');
             if (existingUser) return res.status(400).json({ error: "Email already exists" });
             const saltRounds = 10;
