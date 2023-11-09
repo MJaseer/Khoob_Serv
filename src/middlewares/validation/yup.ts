@@ -16,8 +16,8 @@ export class validation {
 
             await this.stringSchema.emailSchema.validate(email)
             await this.stringSchema.passwordSchema.validate(password)
-            await this.stringSchema.strinSchema.validate(firstName)
-            await this.stringSchema.strinSchema.validate(lastName)
+            await this.stringSchema.stringSchema.validate(firstName)
+            await this.stringSchema.stringSchema.validate(lastName)
             await this.stringSchema.phoneNumberSchema.validate(phone)
 
             next();
@@ -49,13 +49,12 @@ export class validation {
 
     productValidation = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const { email,password, firstName, lastName, phone } = req.body
+            const { name,description, category, quantity } = req.body
 
-            await this.stringSchema.emailSchema.validate(email)
-            await this.stringSchema.passwordSchema.validate(password)
-            await this.stringSchema.strinSchema.validate(firstName)
-            await this.stringSchema.strinSchema.validate(lastName)
-            await this.stringSchema.phoneNumberSchema.validate(phone)
+            await this.stringSchema.productNameSchema.validate(name)
+            await this.stringSchema.productdescriptionSchema.validate(description)
+            await this.stringSchema.stringSchema.validate(category)
+            await this.stringSchema.stringSchema.validate(quantity)
 
             next();
         } catch (error) {
@@ -65,4 +64,6 @@ export class validation {
             } else res.status(422).json({ error, message: 'Validation error' });
         }
     }
+
+    
 } 
